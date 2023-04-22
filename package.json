@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kiszka-py/forkify#readme",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.1",
     "parcel": "^2.8.1"
   }
 }
