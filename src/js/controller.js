@@ -20,13 +20,15 @@ const controlRecipes = async function () {
     // Rendering recipe
     recipeView.render(model.state.recipe);
   } catch (error) {
-    // alert(error);
+    // console.error(`controller`);
+    recipeView.renderError();
   }
 };
 
 // controlRecipes("5ed6604591c37cdc054bca5d");
 
 // window.addEventListener("hashchange", controlRecipes);
-["load", "hashchange"].forEach((event) =>
-  window.addEventListener(event, controlRecipes)
-);
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
+init();
