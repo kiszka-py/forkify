@@ -2,7 +2,7 @@ import View from "./View";
 import icons from "url:../../img/icons.svg";
 
 class ResultsView extends View {
-  _parentElement = document.querySelector(".search-results");
+  _parentElement = document.querySelector(".results");
   _data;
   _errorMessage = `No results found for your query! Please try again.`;
   _message = "";

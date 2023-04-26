@@ -4,6 +4,7 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import searchView from "./views/searchView.js";
 import resultsView from "./views/resultsView.js";
+import paginationView from "./views/paginationView.js";
 
 const controlRecipes = async function () {
   try {
@@ -32,10 +33,23 @@ const controlSearchResults = async function (e) {
     if (!query) return;
 
     await model.loadSearchResults(query);
-    resultsView.render(model.state.search.results);
+    // Render results
+    resultsView.render(model.getSearchResultsPage(4));
+
+    // Render initial pagination buttons
+    paginationView.render(model.state.search);
   } catch (error) {
     console.error(error);
   }
+};
+
+const controlPagination = function (goToPage) {
+  console.log(goToPage);
+  // Render results
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  // Render new pagination buttons
+  paginationView.render(model.state.search);
 };
 
 // controlRecipes("5ed6604591c37cdc054bca5d");
@@ -44,5 +58,6 @@ const controlSearchResults = async function (e) {
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 init();
