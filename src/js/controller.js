@@ -19,6 +19,7 @@ const controlRecipes = async function () {
 
     // Rendering recipe
     recipeView.render(model.state.recipe);
+    // controlServings();
   } catch (error) {
     // console.error(`controller`);
     recipeView.renderError();
@@ -52,11 +53,20 @@ const controlPagination = function (goToPage) {
   paginationView.render(model.state.search);
 };
 
+const controlServings = function (newServings) {
+  // Update recipe servings in state
+  model.updateServings(newServings);
+  recipeView.render(model.state.recipe);
+
+  // Update the recipe view
+};
+
 // controlRecipes("5ed6604591c37cdc054bca5d");
 
 // window.addEventListener("hashchange", controlRecipes);
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
