@@ -26,7 +26,7 @@ const controlRecipes = async function () {
     recipeView.render(model.state.recipe);
     // controlServings();
   } catch (error) {
-    // console.error(`controller`);
+    // console.error(error);
     recipeView.renderError();
   }
 };
@@ -80,10 +80,15 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
+
 // controlRecipes("5ed6604591c37cdc054bca5d");
 
 // window.addEventListener("hashchange", controlRecipes);
 const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);

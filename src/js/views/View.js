@@ -30,13 +30,14 @@ export default class View {
       // Update changed text
       if (
         !newEl.isEqualNode(curEl) &&
-        newEl.firstChild?.nodeValue.trim() !== ""
+        newEl.firstChild?.nodeValue.trim() !== "" &&
+        curEl
       ) {
         curEl.textContent = newEl.textContent;
       }
 
       // Update changed attributes
-      if (!newEl.isEqualNode(curEl)) {
+      if (!newEl.isEqualNode(curEl) && curEl) {
         Array.from(newEl.attributes).forEach((attr) =>
           curEl.setAttribute(attr.name, attr.value)
         );
@@ -57,7 +58,6 @@ export default class View {
   }
 
   renderError(message = this._errorMessage) {
-    console.log(icons);
     const markup = `
       <div class="error">
         <div>
