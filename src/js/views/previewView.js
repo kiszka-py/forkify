@@ -21,6 +21,13 @@ class PreviewView extends View {
                           this._data.publisher
                         }</p>
                     </div>
+                    <div class="recipe__user-generated ${
+                      this._data.key ? "" : "hidden"
+                    }">
+                      <svg>
+                        <use href="${icons}#icon-user"></use>
+                      </svg>
+                    </div>
                 </a>
             </li>
           `;
